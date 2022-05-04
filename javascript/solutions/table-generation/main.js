@@ -110,9 +110,15 @@ function validateAndMarkFormFields(formValues) {
   }
 
   const isNumberOfColumnsValid =  formValues.numberOfColumns > 0;
-  const isSelectedColumnValid = formValues.selectedColumn === null || (formValues.selectedColumn > 0 && formValues.selectedColumn <= formValues.numberOfColumns);
   const isNumberOfRowsValid = formValues.numberOfRows > 0;
-  const isSelectedRowValid = formValues.selectedRow === null || (formValues.selectedRow > 0 && formValues.selectedRow <= formValues.numberOfRows);
+
+  const isSelectedColumnValid = formValues.selectedColumn === null || (
+    formValues.selectedColumn > 0 && formValues.selectedColumn <= formValues.numberOfColumns
+  );
+
+  const isSelectedRowValid = formValues.selectedRow === null || (
+    formValues.selectedRow > 0 && formValues.selectedRow <= formValues.numberOfRows
+  );
 
   if (!isNumberOfColumnsValid) {
     markFieldAsInvalid(NUM_OF_COLUMNS_FIELD_ID);
@@ -131,8 +137,6 @@ function validateAndMarkFormFields(formValues) {
   }
 
   return !(!isNumberOfColumnsValid || !isSelectedColumnValid || !isNumberOfRowsValid || !isSelectedRowValid);
-
-
 }
 
 function markFieldAsInvalid(fieldId) {
