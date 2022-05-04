@@ -1,0 +1,19 @@
+table {
+    margin-top: 25px;
+}
+
+td {
+    text-align: center !important;
+}
+
+.selected-row {
+    background: #97e297;
+}
+
+.selected-column {
+    background: #f94c4c;
+}
+
+.selected-row .selected-column {
+    background: #44d8e6;
+}
