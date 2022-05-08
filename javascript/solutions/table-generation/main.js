@@ -16,7 +16,6 @@ FORM_FIELDS.forEach(fieldId => document.getElementById(fieldId).addEventListener
   removeExistingTable();
   hideValidationErrors();
 
-
   const formValues = getFormValues();
   const isDataValid = validateAndMarkFormFields(formValues);
 
@@ -105,34 +104,24 @@ function hideValidationErrors() {
 }
 
 function validateAndMarkFormFields(formValues) {
-  if (formValues.numberOfColumns === null ||formValues.numberOfRows === null) {
-    return false;
-  }
-
   const isNumberOfColumnsValid =  formValues.numberOfColumns > 0;
   const isNumberOfRowsValid = formValues.numberOfRows > 0;
+  const isSelectedColumnValid = formValues.selectedColumn > 0 && formValues.selectedColumn <= formValues.numberOfColumns;
+  const isSelectedRowValid = formValues.selectedRow > 0 && formValues.selectedRow <= formValues.numberOfRows;
 
-  const isSelectedColumnValid = formValues.selectedColumn === null || (
-    formValues.selectedColumn > 0 && formValues.selectedColumn <= formValues.numberOfColumns
-  );
-
-  const isSelectedRowValid = formValues.selectedRow === null || (
-    formValues.selectedRow > 0 && formValues.selectedRow <= formValues.numberOfRows
-  );
-
-  if (!isNumberOfColumnsValid) {
+  if (!isNumberOfColumnsValid && formValues.numberOfColumns !== null) {
     markFieldAsInvalid(NUM_OF_COLUMNS_FIELD_ID);
   }
 
-  if (!isSelectedColumnValid) {
+  if (!isSelectedColumnValid && formValues.selectedColumn !== null) {
     markFieldAsInvalid(SELECTED_COLUMN_FIELD_ID);
   }
 
-  if (!isNumberOfRowsValid) {
+  if (!isNumberOfRowsValid && formValues.numberOfRows !== null) {
     markFieldAsInvalid(NUM_OF_ROWS_FIELD_ID);
   }
 
-  if (!isSelectedRowValid) {
+  if (!isSelectedRowValid && formValues.selectedRow !== null) {
     markFieldAsInvalid(SELECTED_ROW_FIELD_ID);
   }
 
